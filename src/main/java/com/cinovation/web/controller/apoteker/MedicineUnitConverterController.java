@@ -38,7 +38,7 @@ public class MedicineUnitConverterController extends DataConverter {
 
 		Page<MedicineUnitConverterEntity> page = medicineUnitConverterService.getMedicineUnitConverterTableByMedicineId(filter1, pageable);
     	
-    	return viewData(page);
+    	return viewDataPage(page);
     }
 	
 	@RequestMapping(value = "/getListAction", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

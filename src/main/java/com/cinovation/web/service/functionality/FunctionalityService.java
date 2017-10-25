@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.cinovation.web.entity.UserGroupEntity;
 import com.cinovation.web.entity.functionality.FunctionalityEntity;
 
 public interface FunctionalityService {
@@ -25,4 +26,14 @@ public interface FunctionalityService {
 	
 	FunctionalityEntity deleteFunctionalityById(String ID) throws Exception;
 	
+	/*
+	 * RSSYSE-1
+	 * Start Fix : TIDAK BISA LOGIN
+	 * Description : update usergroup untuk table fungsionalitas
+	 * ADD:
+	 */
+	FunctionalityEntity updateFunctionalityUserGroup(String userCd, UserGroupEntity userGroupEntity) throws Exception;
+	/*
+	 * End Fix
+	 */
 }

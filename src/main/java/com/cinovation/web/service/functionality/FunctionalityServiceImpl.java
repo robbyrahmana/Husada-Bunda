@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cinovation.web.entity.UserEntity;
+import com.cinovation.web.entity.UserGroupEntity;
 import com.cinovation.web.entity.functionality.FunctionalityEntity;
 import com.cinovation.web.repository.functionality.FunctionalityRepository;
 import com.cinovation.web.repository.functionality.PositionRepository;
@@ -137,6 +138,30 @@ public class FunctionalityServiceImpl implements FunctionalityService{
 		
 		return functionalityRepository.saveAndFlush(data);		
 	}
+	
+	/*
+	 * RSSYSE-1
+	 * Start Fix : TIDAK BISA LOGIN
+	 * Description : update usergroup untuk table fungsionalitas
+	 * ADD:
+	 */
+	@HandleBeforeSave
+	@Override
+	@Transactional(rollbackFor=RecordNotFoundException.class)
+	public FunctionalityEntity updateFunctionalityUserGroup(String userCd, UserGroupEntity userGroupEntity) throws Exception {
+		FunctionalityEntity data = functionalityRepository.findByCd(userCd);
+		
+		if (data == null) {
+			throw new RecordNotFoundException();
+		}
+		
+		data.setUserGroupEntity(userGroupEntity);
+		
+		return functionalityRepository.saveAndFlush(data);		
+	}
+	/*
+	 * End Fix
+	 */
 	
 	@Override
 	public List<FunctionalityEntity> getPositionEntityId(String ID) {

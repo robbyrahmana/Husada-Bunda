@@ -28,4 +28,6 @@ public class ApplicationConstants {
 	public static final String TREATMENT_BODY_TIM_OPERASI	= "6d64a19e-0aad-44eb-9baf-fde349eb9220";
 	
 	public static final String ALL_RECORD	= "[All]";
+	
+	public static final String ROLE_APP	= "3c3017b4-48eb-11e7-954d-02004e435049";
 }
