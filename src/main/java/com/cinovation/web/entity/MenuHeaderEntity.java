@@ -5,15 +5,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity(name = "MenuHeaderEntity")
 @Table(name = "c_menu_header")
-public class MenuHeaderEntity implements Serializable{
+public class MenuHeaderEntity implements Serializable {
 
 	/**
 	 * 
@@ -26,6 +29,19 @@ public class MenuHeaderEntity implements Serializable{
 	@Column(name = "ID", unique = true)
 	private String id;
 
+	/*
+	 * RSSYSE-14
+	 * Start Fix : MENU RUANGAN DI GABUNGKAN DENGAN PENGATURAN DENGAN BENTUK FOLDER DI DALAM PENGATURAN
+	 * Description : add parent id of header for multilevel
+	 * ADD:
+	 */
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "parent_id", referencedColumnName = "ID")
+	private MenuHeaderEntity menuHeaderEntity;
+	/*
+	 * End Fix
+	 */
+	
 	@Column(name = "name")
 	private String name;
 
@@ -50,6 +66,14 @@ public class MenuHeaderEntity implements Serializable{
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public MenuHeaderEntity getMenuHeaderEntity() {
+		return menuHeaderEntity;
+	}
+
+	public void setMenuHeaderEntity(MenuHeaderEntity menuHeaderEntity) {
+		this.menuHeaderEntity = menuHeaderEntity;
 	}
 
 	public String getName() {
